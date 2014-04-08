@@ -11,3 +11,7 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+
+# Josh custom
+# I usually build to a bin/ folder, so I'm going to put that in the gitignore as well.
+bin/
