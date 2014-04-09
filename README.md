@@ -18,3 +18,8 @@ If necessary, open the scene in cs4172-finalProj/Assets/_Scenes/Scene001.unity
 Should be all ok.  If something looks broken, just reinstall the Vuforia Unity extension here: 
 
 https://developer.vuforia.com/resources/sdk/unity
+
+Josh Lieberman
+Will
+Hila
+Dan
