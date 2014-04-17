@@ -38,5 +38,15 @@ public class Ball : MonoBehaviour {
 			rigidbody.velocity = Vector3.zero;
 			rigidbody.angularVelocity = Vector3.zero;
 		}
+
+		if (other.gameObject.tag == "WallPiece") {
+			//			other.gameObject.SetActive (false);
+//			Debug.Log("hit wall piece.");
+			//wait 5 seconds, then destroy gameobject
+//			Destroy(gameObject, destroyTime);
+			// this is wrong
+//			WallPiece.destroy = true;
+
+		}
 	}
 }
