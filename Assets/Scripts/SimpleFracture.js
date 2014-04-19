@@ -31,6 +31,15 @@ function OnCollisionEnter (collision : Collision) {
 	var point=collision.contacts[0].point;
 	var vec = collision.relativeVelocity*UsedMass(collision);
 	FractureAtPoint(point,vec);
+	// added by Josh
+	rigidbody.useGravity = true;
+	Debug.Log("rigidbody.useGravity: " + rigidbody.useGravity);
+	while(rigidbody.mass > 10) {
+		rigidbody.mass -= 10;
+		Debug.Log("rigidbody.mass: " + rigidbody.mass);
+		minBreakingForce -= 1000;
+		Debug.Log("minBreakingForce: " + minBreakingForce);
+	}
 }
 //-------------------------------------------------------------------
 function FractureAtPoint (hit : Vector3, force : Vector3) {
