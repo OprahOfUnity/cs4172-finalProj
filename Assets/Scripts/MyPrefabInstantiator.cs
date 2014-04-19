@@ -39,6 +39,9 @@ public class MyPrefabInstantiator : MonoBehaviour, ITrackableEventHandler {
 	private void OnTrackingFound()
 	{
 		if (myModelPrefab != null) {
+
+			// change this
+			// need to clone an object, and keep track of the number of clones
 			Transform myModelTrf = GameObject.Instantiate(myModelPrefab) as Transform;
 			
 			myModelTrf.parent = mTrackableBehaviour.transform;             
@@ -46,6 +49,8 @@ public class MyPrefabInstantiator : MonoBehaviour, ITrackableEventHandler {
 			myModelTrf.localRotation = Quaternion.identity;
 			myModelTrf.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 			
+			// Warning CS0618: `UnityEngine.GameObject.active' is obsolete: `GameObject.active is obsolete.
+			// Use GameObject.SetActive(), GameObject.activeSelf or GameObject.activeInHierarchy.' (CS0618) (Assembly-CSharp)
 			myModelTrf.gameObject.active = true;
 		}
 	}
