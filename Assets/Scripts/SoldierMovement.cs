@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class SoldierMovement : MonoBehaviour {
 
+	public static bool moveSoldiers;
+
 	private GameObject currentWayPoint;
 	public Queue<GameObject> q;
 	GameObject[] gos;
@@ -29,7 +31,8 @@ public class SoldierMovement : MonoBehaviour {
 		Debug.Log (q.ToString());
 		Debug.Log (q.Count);
 
-		if (currentWayPoint) {
+
+		if (currentWayPoint && moveSoldiers) {
 			Vector3 wpPos = currentWayPoint.transform.position;
 			wpPos.y = 5;//adjusted for realistic soldier movement
 			transform.LookAt (wpPos);
@@ -42,6 +45,8 @@ public class SoldierMovement : MonoBehaviour {
 	void setCurrentWayPoint() {
 		if (q.Count != 0) {
 			currentWayPoint = q.Dequeue ();
+		} else {
+			moveSoldiers = false;
 		}
 	}
 
@@ -54,5 +59,10 @@ public class SoldierMovement : MonoBehaviour {
 			//	Object.Destroy (other);
 			currentWayPoint = null;
 		}
+	}
+
+	public void setMoveSoldiers () {
+		// this works only for one at a time.
+		moveSoldiers = !moveSoldiers;
 	}
 }
