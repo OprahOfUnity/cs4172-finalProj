@@ -10,10 +10,14 @@ public class SoldierMovement : MonoBehaviour {
 	public Queue<GameObject> q;
 	GameObject[] gos;
 
+	bool added;
+
 	// Use this for initialization
 	void Start () {
 		currentWayPoint = null;
 		q = new Queue<GameObject>();
+
+		added = false;
 	}
 
 	public void addNewWayPoint() {
@@ -27,6 +31,13 @@ public class SoldierMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (!added) {
+			GameObject[] archers = GameObject.FindGameObjectsWithTag("archers");
+			foreach (GameObject archer in archers) {
+				archer.GetComponent<ArcherBehaviour> ().addNewTarget ();
+			}
+			added = true;
+		}
 
 		Debug.Log (q.ToString());
 		Debug.Log (q.Count);
