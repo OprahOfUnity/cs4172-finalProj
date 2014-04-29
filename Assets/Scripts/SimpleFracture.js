@@ -40,6 +40,14 @@ function OnCollisionEnter (collision : Collision) {
 		minBreakingForce -= 1000;
 		Debug.Log("minBreakingForce: " + minBreakingForce);
 	}
+	
+	// if hit wall1, point to wall2
+	if (this.name == "Wall1") {
+		ArrowRotate.wall2 = true;
+		// arrow point to Wall2
+		// can't do this in js
+//		ArrowPoint.wall2 = true;
+	}
 }
 //-------------------------------------------------------------------
 function FractureAtPoint (hit : Vector3, force : Vector3) {

@@ -7,7 +7,7 @@ public class DestroyCannonball : MonoBehaviour {
 	void Start () {
 	
 		// Destroy cannonball after 3 seconds
-		Destroy (gameObject, 3.0f);
+		Destroy (gameObject, 5.0f);
 	}
 	
 	// Update is called once per frame
