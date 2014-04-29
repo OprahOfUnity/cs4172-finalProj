@@ -19,7 +19,16 @@ Should be all ok.  If something looks broken, just reinstall the Vuforia Unity e
 
 https://developer.vuforia.com/resources/sdk/unity
 
-Josh Lieberman
-Will
-Hila
-Dan
+Asset Sources:
+
+Arrow:
+
+https://github.com/vitapoly/mcrobot/blob/master/unityProj/Assets/models/arrow.obj
+
+Rock/stone:
+
+http://seamless-pixels.blogspot.com/p/stone.html
+
+Grass:
+
+http://www.pageresource.com/wallpapers/4262/dark-green-grass-texture-and-high-resolution-hd-wallpaper.html
