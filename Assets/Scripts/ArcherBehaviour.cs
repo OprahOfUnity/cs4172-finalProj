@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class ArcherBehaviour : MonoBehaviour {
@@ -7,6 +8,13 @@ public class ArcherBehaviour : MonoBehaviour {
 	public Queue<GameObject> q;
 	GameObject[] gos;
 	public string targetTag;
+
+	// fire arrows
+	bool readyToFire = true;
+	public Rigidbody arrow;
+	public Transform archerEnd;
+	// hack
+	int count;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +38,17 @@ public class ArcherBehaviour : MonoBehaviour {
 			setCurrentTarget();
 		}
 
+		count++;
 
+		// readyToFire == true
+		if(count % 100 == 0) {
+			Debug.Log ("fire");
+			Rigidbody arrowInstance;
+			arrowInstance = Instantiate(arrow, archerEnd.position, archerEnd.rotation) as Rigidbody;
+			arrowInstance.AddForce(archerEnd.forward * 1600);
+//			readyToFire = false;
+		}
+//		StartCoroutine ("WaitToFireAgain");
 	}
 
 	public void addNewTarget() {
@@ -47,4 +65,11 @@ public class ArcherBehaviour : MonoBehaviour {
 			currentTarget = q.Dequeue ();
 		}
 	}
+
+//	IEnumerator WaitToFireAgain() {
+//		readyToFire = false;
+//		Debug.Log ("reachable");
+//		yield return new WaitForSeconds (5);
+//		readyToFire = true;
+//	}
 }

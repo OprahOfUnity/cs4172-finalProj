@@ -14,4 +14,13 @@ public class DestroyCannonball : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnTriggerEnter(Collider other) {
+		Debug.Log("hit anything");
+		if (other.gameObject.tag == "trebuchet") {
+			Debug.Log("hit trebuchet");
+			Destroy (other.gameObject);
+			Destroy (GameObject.Find("cannonEnd1"));
+		}
+	}
 }

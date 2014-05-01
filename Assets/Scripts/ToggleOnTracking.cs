@@ -15,8 +15,11 @@ public class ToggleOnTracking : MonoBehaviour {
 	void Update () {
 
 		if (ctb.CurrentStatus == TrackableBehaviour.Status.UNKNOWN) {
+			Debug.Log("lost trackable, setting gameObject to false");
+			// enable is kinematic here?
 			transform.Find("Parent").gameObject.SetActive(false);
 		} else {
+//			Debug.Log("gameObject should be active");
 			transform.Find("Parent").gameObject.SetActive(true);
 		}
 	
