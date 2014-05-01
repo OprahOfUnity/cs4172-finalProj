@@ -31,30 +31,28 @@ public class SoldierMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!added) {
-			GameObject[] archers = GameObject.FindGameObjectsWithTag("archers");
-			foreach (GameObject archer in archers) {
-				archer.GetComponent<ArcherBehaviour> ().addNewTarget ();
-			}
-			added = true;
-		}
 
 		Debug.Log (q.ToString());
 		Debug.Log (q.Count);
 
+		Debug.Log (currentWayPoint);
+		Debug.Log (moveSoldiers);
 
-		if (currentWayPoint && moveSoldiers) {
+
+		if (currentWayPoint != null && moveSoldiers) {
 			Vector3 wpPos = currentWayPoint.transform.position;
 			wpPos.y = 5;//adjusted for realistic soldier movement
 			transform.LookAt (wpPos);
 			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.70f);
-		} else {
+		} else if (currentWayPoint == null && moveSoldiers) {
+			Debug.Log ("setcurrentway: " + currentWayPoint);
 			setCurrentWayPoint();
 		}
 	}
 
 	void setCurrentWayPoint() {
 		if (q.Count != 0) {
+//			Debug.Log ("queue not empty");
 			currentWayPoint = q.Dequeue ();
 		} else {
 			moveSoldiers = false;
@@ -67,6 +65,7 @@ public class SoldierMovement : MonoBehaviour {
 		if (other.gameObject.tag == "waypoint") {
 			Debug.Log (other);
 			other.gameObject.SetActive(false);
+//			Destroy (other);
 			//	Object.Destroy (other);
 			currentWayPoint = null;
 		}
