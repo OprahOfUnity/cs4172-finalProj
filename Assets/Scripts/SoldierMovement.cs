@@ -41,9 +41,9 @@ public class SoldierMovement : MonoBehaviour {
 		
 		if (currentWayPoint != null && moveSoldiers) {
 			Vector3 wpPos = currentWayPoint.transform.position;
-			wpPos.y = 5;//adjusted for realistic soldier movement
+			//			wpPos.y = 0.125f;//adjusted for realistic soldier movement
 			transform.LookAt (wpPos);
-			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.70f);
+			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.1f);
 		} else if (currentWayPoint == null && moveSoldiers) {
 			//			Debug.Log ("setcurrentway: " + currentWayPoint);
 			setCurrentWayPoint();

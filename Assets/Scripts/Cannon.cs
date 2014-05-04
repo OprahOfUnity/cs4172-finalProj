@@ -18,20 +18,20 @@ public class Cannon : MonoBehaviour {
 		transform.RotateAround (Vector3.zero, Vector3.up, Input.GetAxis ("Horizontal") * -25.0f * Time.deltaTime);
 
 		// Code for OnMouseDown in the iPhone. Unquote to test.
-		RaycastHit hit = new RaycastHit();
-		for (int i = 0; i < Input.touchCount; ++i) {
-			if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {
-				// Construct a ray from the current touch coordinates
-				Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-				if (Physics.Raycast(ray, out hit)) {
-					hit.transform.gameObject.SendMessage("OnMouseDown");
-					// cannon stuff
-					Rigidbody cannonballInstance;
-					cannonballInstance = Instantiate(prefab, cannonEnd.position, cannonEnd.rotation) as Rigidbody;
-					cannonballInstance.AddForce(cannonEnd.forward * 5000);
-				}
-			}
-		}
+//		RaycastHit hit = new RaycastHit();
+//		for (int i = 0; i < Input.touchCount; ++i) {
+//			if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {
+//				// Construct a ray from the current touch coordinates
+//				Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+//				if (Physics.Raycast(ray, out hit)) {
+//					hit.transform.gameObject.SendMessage("OnMouseDown");
+//					// cannon stuff
+//					Rigidbody cannonballInstance;
+//					cannonballInstance = Instantiate(prefab, cannonEnd.position, cannonEnd.rotation) as Rigidbody;
+//					cannonballInstance.AddForce(cannonEnd.forward * 5000);
+//				}
+//			}
+//		}
 
 		if (Input.GetKeyDown(KeyCode.Space) == true) {
 			Rigidbody cannonballInstance;
