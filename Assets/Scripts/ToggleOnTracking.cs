@@ -16,14 +16,14 @@ public class ToggleOnTracking : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (ctb.CurrentStatus == TrackableBehaviour.Status.UNKNOWN) {
-			Debug.Log("lost trackable, setting gameObject to false");
-			// enable is kinematic here?
-			transform.Find("CylinderTarget").gameObject.SetActive(false);
-		} else {
-//			Debug.Log("gameObject should be active");
-			transform.Find("CylinderTarget").gameObject.SetActive(true);
-		}
+//		if (ctb.CurrentStatus == TrackableBehaviour.Status.UNKNOWN) {
+//			Debug.Log("lost trackable, setting gameObject to false");
+//			// enable is kinematic here?
+//			transform.Find("CylinderTarget").gameObject.SetActive(false);
+//		} else {
+////			Debug.Log("gameObject should be active");
+//			transform.Find("CylinderTarget").gameObject.SetActive(true);
+//		}
 	
 	}
 }
