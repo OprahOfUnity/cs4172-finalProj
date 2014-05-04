@@ -32,11 +32,11 @@ public class SoldierMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Debug.Log (q.ToString());
-		Debug.Log (q.Count);
-
-		Debug.Log (currentWayPoint);
-		Debug.Log (moveSoldiers);
+//		Debug.Log (q.ToString());
+//		Debug.Log (q.Count);
+//
+//		Debug.Log (currentWayPoint);
+//		Debug.Log (moveSoldiers);
 
 
 		if (currentWayPoint != null && moveSoldiers) {
@@ -45,7 +45,7 @@ public class SoldierMovement : MonoBehaviour {
 			transform.LookAt (wpPos);
 			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.70f);
 		} else if (currentWayPoint == null && moveSoldiers) {
-			Debug.Log ("setcurrentway: " + currentWayPoint);
+//			Debug.Log ("setcurrentway: " + currentWayPoint);
 			setCurrentWayPoint();
 		}
 	}
