@@ -42,7 +42,7 @@ public class ArcherBehaviour : MonoBehaviour {
 
 		// readyToFire == true
 		if(count % 100 == 0) {
-			Debug.Log ("fire");
+//			Debug.Log ("fire");
 			Rigidbody arrowInstance;
 			arrowInstance = Instantiate(arrow, archerEnd.position, archerEnd.rotation) as Rigidbody;
 			arrowInstance.AddForce(archerEnd.forward * 1600);
