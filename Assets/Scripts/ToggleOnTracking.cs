@@ -8,6 +8,8 @@ public class ToggleOnTracking : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ctb = this.GetComponent<CylinderTargetBehaviour>();
+		Debug.Log (ctb);
+		Debug.Log (ctb.CurrentStatus);
 	
 	}
 	
@@ -17,10 +19,10 @@ public class ToggleOnTracking : MonoBehaviour {
 		if (ctb.CurrentStatus == TrackableBehaviour.Status.UNKNOWN) {
 			Debug.Log("lost trackable, setting gameObject to false");
 			// enable is kinematic here?
-			transform.Find("Parent").gameObject.SetActive(false);
+			transform.Find("CylinderTarget").gameObject.SetActive(false);
 		} else {
 //			Debug.Log("gameObject should be active");
-			transform.Find("Parent").gameObject.SetActive(true);
+			transform.Find("CylinderTarget").gameObject.SetActive(true);
 		}
 	
 	}
