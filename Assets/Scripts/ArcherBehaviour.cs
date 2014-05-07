@@ -45,7 +45,7 @@ public class ArcherBehaviour : MonoBehaviour {
 //			Debug.Log ("fire");
 			Rigidbody arrowInstance;
 			arrowInstance = Instantiate(arrow, archerEnd.position, archerEnd.rotation) as Rigidbody;
-			arrowInstance.AddForce(archerEnd.forward * 1600);
+			arrowInstance.AddForce(archerEnd.forward * 500);
 //			readyToFire = false;
 		}
 //		StartCoroutine ("WaitToFireAgain");
