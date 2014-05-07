@@ -25,5 +25,16 @@ public class RenderGUI : MonoBehaviour {
 			GameObject footsoldiers = GameObject.FindGameObjectWithTag("footsoldiers");
 			footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers ();
 		}
+
+		if (GUI.Button (new Rect (10, 150, 280, 120), "Toggle Waypoint Mode", cameraStyle)) {
+			// waypoint toggle bool
+			SetWaypoint.toggleWaypointMode = !SetWaypoint.toggleWaypointMode;
+		}
+
+		if (GUI.Button (new Rect (10, 280, 280, 120), "Reparent Toolbar Obj", cameraStyle)) {
+			// reparent toolbar generated object
+			// TODO: Dan, insert your logic here.
+
+		}
 	}
 }
