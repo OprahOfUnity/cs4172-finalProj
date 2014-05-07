@@ -4,15 +4,19 @@ using System.Collections;
 public class RenderGUI : MonoBehaviour {
 
 	private GUIStyle cameraStyle;
+	private GameObject toolbar;
+	private VirtualButtonEventHandler handler;
+	private bool hasSpawnedObject = false;
 
 	// Use this for initialization
 	void Start () {
-	
+		toolbar = GameObject.Find ("Toolbar");
+		handler = toolbar.GetComponent <VirtualButtonEventHandler>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		hasSpawnedObject = handler.hasSpawnedObject;
 	}
 
 	public void OnGUI () {
@@ -30,11 +34,10 @@ public class RenderGUI : MonoBehaviour {
 			// waypoint toggle bool
 			SetWaypoint.toggleWaypointMode = !SetWaypoint.toggleWaypointMode;
 		}
-
-		if (GUI.Button (new Rect (10, 280, 280, 120), "Reparent Toolbar Obj", cameraStyle)) {
-			// reparent toolbar generated object
-			// TODO: Dan, insert your logic here.
-
+		if (hasSpawnedObject){
+			if (GUI.Button (new Rect (10, 280, 280, 120), "Reparent Toolbar Obj", cameraStyle)) {
+				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
+			}
 		}
 	}
 }
