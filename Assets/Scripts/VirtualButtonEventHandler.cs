@@ -4,7 +4,7 @@ using System.Collections;
 public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandler {
 	private GameObject toolbar;
 	
-	private bool hasSpawnedObject;
+	public bool hasSpawnedObject;
 	
 	void Start () {
 		toolbar = this.gameObject;
@@ -57,7 +57,7 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 	
 	void AttachObjectToToolbar(GameObject obj, string type) {
 		obj.transform.parent = toolbar.transform;            
-		obj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+		obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		obj.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.18f);
 		obj.transform.localRotation = Quaternion.identity;
 		
@@ -73,6 +73,12 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 			break;
 		}
 		obj.SetActive(true);
+	}
+
+	public void OnGUI() {
+		if (hasSpawnedObject) {
+		
+		}
 	}
 	
 }
