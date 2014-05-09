@@ -42,6 +42,7 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSpawnedObject){
 			if (GUI.Button (new Rect (20, 280, 280, 120), "Drop Object", cameraStyle)) {
 				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
+        handler.hasSpawnedObject = !handler.hasSpawnedObject;
 			}
 		}
 	}
