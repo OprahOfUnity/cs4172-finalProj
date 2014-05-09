@@ -26,25 +26,10 @@ public class SetSpawnedObject : MonoBehaviour {
 			spawnedObject = child.transform;
 		}
 
-		Debug.Log ("OBJECT BEFORE REPARENTING:\n" +
-						"parent: " + spawnedObject.parent +
-						"localPosition: " + spawnedObject.localPosition +
-						"position: " + spawnedObject.position +
-						"localScale: " + spawnedObject.localScale +
-						"rotation: " + spawnedObject.localPosition);
 		spawnedObject.parent = world;
 		spawnedObject.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 		spawnedObject.position = new Vector3 (spawnedObject.position.x, world.position.y + 0.25f, spawnedObject.position.z);
-		spawnedObject.rotation = Quaternion.identity;
-
-		Debug.Log ("OBJECT AFTER REPARENTING:\n" +
-		           "parent: " + spawnedObject.parent +
-		           "localPosition: " + spawnedObject.localPosition +
-		           "position: " + spawnedObject.position +
-		           "localScale: " + spawnedObject.localScale +
-		           "rotation: " + spawnedObject.localPosition);
-
 	}
-	
+
 
 }
