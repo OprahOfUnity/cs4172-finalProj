@@ -3,14 +3,16 @@ using System.Collections;
 
 public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandler {
 	private GameObject toolbar;
+	private GameObject wand;
 
-  public GameObject cannon;
-  public GameObject soldier;
+	public GameObject cannon;
+	public GameObject soldier;
 
 	public bool hasSpawnedObject;
 
 	void Start () {
 		toolbar = this.gameObject;
+    	wand = GameObject.Find("Wand");
 		hasSpawnedObject = false;
 
 		VirtualButtonBehaviour[] vbs = GetComponentsInChildren<VirtualButtonBehaviour>();
@@ -33,13 +35,13 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 			switch (vb.name) {
   			case "btnSpawnTrebuchet":
   				clone = (GameObject)Instantiate(cannon);
-		        clone.tag = "trebuchet";
-  				AttachObjectToToolbar(clone, "Trebuchet");
+		        clone.gameObject.tag = "trebuchet";
+  				AttachObjectToWand(clone, "Trebuchet");
   				break;
   			case "btnSpawnSoldier":
   				clone = (GameObject)Instantiate(soldier);
-          		clone.tag = "footsoldiers";
-  				AttachObjectToToolbar(clone, "Soldier");
+	      		clone.gameObject.tag = "footsoldiers";
+  				AttachObjectToWand(clone, "Soldier");
   				break;
   			default:
   				Debug.Log ("Invalid Button");
@@ -60,31 +62,34 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 		}
 	}
 
-	void AttachObjectToToolbar(GameObject obj, string type) {
-		obj.transform.parent = toolbar.transform;
-	    obj.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.18f);
-		obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-
-		switch (type) {
-  		case "Trebuchet":
-        obj.transform.localRotation = Quaternion.Euler(270, 180, 0);
-  			obj.AddComponent<BoxCollider>();
-  			break;
-  		case "Soldier":
-        obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
-  			obj.AddComponent<BoxCollider>();
-  			break;
-  		default:
-  			Debug.Log ("Undefined Collider Type");
-  			break;
-		}
-		obj.SetActive(true);
+	private void RemoveObjectsFromWand() {
+	    for (int i = 0; i < wand.transform.GetChildCount(); i++)
+	    {
+	      Transform child = wand.transform.GetChild(i);
+	      child.gameObject.active = false;
+	    }
 	}
 
-	public void OnGUI() {
-		if (hasSpawnedObject) {
 
+	void AttachObjectToWand(GameObject obj, string type) {
+		obj.transform.parent = wand.transform;
+    	obj.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
+		obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+
+		switch (type) {
+	  		case "Trebuchet":
+	        	obj.transform.localRotation = Quaternion.Euler(270, 180, 0);
+	  			obj.AddComponent<BoxCollider>();
+	  			break;
+	  		case "Soldier":
+	        	obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+	  			obj.AddComponent<BoxCollider>();
+	  			break;
+	  		default:
+	  			Debug.Log ("Undefined Collider Type");
+	  			break;
 		}
+		obj.SetActive(true);
 	}
 
 }
