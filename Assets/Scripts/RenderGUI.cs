@@ -13,6 +13,8 @@ public class RenderGUI : MonoBehaviour {
     private bool hasAttachedObjectToWand = false;
 	private bool hasSoldiers = false;
 
+	private bool hasShoot = false;
+
 	// Use this for initialization
 	void Start () {
 		world = GameObject.Find ("CylinderTarget");
@@ -26,6 +28,15 @@ public class RenderGUI : MonoBehaviour {
 		hasSpawnedObject = virtualButtonHandler.hasSpawnedObject;
     	hasAttachedObjectToWand = wandHandler.hasAttachedObject;
 		hasSoldiers = this.countWorldSoldiers ();
+
+
+	}
+
+	void LateUpdate () {
+		if (hasShoot) {
+			StartCoroutine(ShootOneCannonball());
+			hasShoot = false;
+		}
 	}
 
 	private bool countWorldSoldiers () {
@@ -37,6 +48,15 @@ public class RenderGUI : MonoBehaviour {
 			}
 		}
 		return soldiers;
+	}
+
+	private IEnumerator ShootOneCannonball() {
+		Debug.Log ("Shooting..");
+		CannonShootHandler.toggleShooting = true;
+		Debug.Log ("Waiting..");
+		yield return new WaitForSeconds(0.01f); 
+		Debug.Log ("Stop..");
+		CannonShootHandler.toggleShooting = false;
 	}
 
 	public void OnGUI () {
@@ -87,7 +107,7 @@ public class RenderGUI : MonoBehaviour {
 				}
 				
 				if (GUI.Button (new Rect (20, 150, 280, 120), "Shoot", cameraStyle)) {
-		
+					hasShoot = true;
 				}
 			}
 		}
