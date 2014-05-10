@@ -16,7 +16,7 @@ public class CannonShootHandler : MonoBehaviour {
 	void Start () {
 		handler = this.GetComponent <SelectionHandler> ();
 	}
-	
+
 	// Update is called once per frame
 	void LateUpdate () {
 		if (toggleShooting) {
@@ -29,6 +29,7 @@ public class CannonShootHandler : MonoBehaviour {
 		GameObject clone = (GameObject)Instantiate (cannonball, handler.selectedObject.transform.position, handler.selectedObject.transform.rotation);
 		clone.AddComponent<Rigidbody>();
 		clone.AddComponent<SphereCollider>();
+		clone.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
 		Vector3 direction = new Vector3 (0, ballSpeed, 0);
 		clone.rigidbody.velocity = handler.selectedObject.transform.TransformDirection (direction);
 		Physics.IgnoreCollision (clone.transform.collider, handler.selectedObject.transform.collider);
