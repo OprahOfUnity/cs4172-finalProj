@@ -5,8 +5,7 @@ public class CannonShootHandler : MonoBehaviour {
 	public GameObject cannonball;
 	public float fireRate = 0.5f;
 	public float ballSpeed = 2.0f;
-
-	private float fireDelay;
+	
 	public static bool toggleShooting = false;
 
 	private SelectionHandler handler;
@@ -25,7 +24,6 @@ public class CannonShootHandler : MonoBehaviour {
 	}
 
 	void shootCannonball () {
-		fireDelay = Time.deltaTime + fireRate;
 		GameObject clone = (GameObject)Instantiate (cannonball, handler.selectedObject.transform.position, handler.selectedObject.transform.rotation);
 		clone.AddComponent<Rigidbody>();
 		clone.AddComponent<SphereCollider>();

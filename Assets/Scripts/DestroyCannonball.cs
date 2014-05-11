@@ -19,11 +19,10 @@ public class DestroyCannonball : MonoBehaviour {
 		if (other.gameObject.tag == "trebuchet") {
 			Debug.Log("hit trebuchet");
 			Destroy (other.gameObject);
-			Destroy (GameObject.Find("cannonEnd1"));
 		}
 		if (other.gameObject.tag == "footsoldiers") {
 			Debug.Log ("hit soldiers");
-			other.gameObject.SetActive(false);
+			Destroy (other.gameObject);
 		}
 	}
 }

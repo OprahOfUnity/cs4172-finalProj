@@ -5,81 +5,84 @@ using System.Collections.Generic;
 public class ArcherBehaviour : MonoBehaviour {
 	
 	private GameObject currentTarget;
-	public Queue<GameObject> q;
+//	public Queue<GameObject> q;
+	public List<GameObject> list;
 	GameObject[] gos;
-	public string targetTag;
 	
 	// fire arrows
-	bool readyToFire = true;
 	public Rigidbody arrow;
 	public Transform archerEnd;
-	// hack
-	int count;
+	private float arrowSpeed = 20.0f;
+
+	private float threatDistance;
+	private int threatIndex;
 	
 	// Use this for initialization
 	void Start () {
 		currentTarget = null;
-		q = new Queue<GameObject>();
-		targetTag = "footsoldiers";
+		list = new List<GameObject> ();
+		threatDistance = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		setCurrentTarget();
+
 		if (currentTarget) {
-			//			Vector3 tarPos = currentTarget.transform.position;
-			//			Quaternion neededRotation = Quaternion.LookRotation(tarPos - this.transform.position);
-			//			Quaternion interpolatedRotation = Quaternion.Slerp(this.transform.rotation, neededRotation, Time.deltaTime * 1.0f);
-			
-			//			this.transform.rotation = interpolatedRotation;
-			//			wpPos.y = 5;//adjusted for realistic soldier movement
-			//			transform.LookAt (wpPos);
-			//			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.10f);
-			
-//			Debug.Log("Archer A.I.!");
 			float damping = 1.0f;
 			Transform target = currentTarget.transform;
-//			Debug.Log("currentTarget positon: " + currentTarget.transform.position);
 			Vector3 lookPos = target.position - this.transform.position;
 			lookPos.y = 0;
 			Quaternion rotation = Quaternion.LookRotation(lookPos);
 			this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * damping);
-			
-		} else {
-			setCurrentTarget();
 		}
-		
-		count++;
 		
 		// readyToFire == true
-		if(count % 100 == 0) {
-			//			Debug.Log ("fire");
+		if (threatDistance < 8.0f) {
 			Rigidbody arrowInstance;
 			arrowInstance = Instantiate(arrow, archerEnd.position, archerEnd.rotation) as Rigidbody;
-			arrowInstance.AddForce(archerEnd.forward * 500);
-			//			readyToFire = false;
+
+			Vector3 lookPosition = new Vector3(currentTarget.transform.position.x, currentTarget.transform.position.y + 0.5f, currentTarget.transform.position.z);
+
+			arrowInstance.transform.LookAt(lookPosition);
+			arrowInstance.rigidbody.AddForce(arrowInstance.transform.forward * 1000.0f);
+
+			removeDestroyedTarget();
 		}
-		//		StartCoroutine ("WaitToFireAgain");
+	}
+
+	private void removeDestroyedTarget () {
+		list.RemoveAt (threatIndex);
 	}
 	
-	public void addNewTarget() {
+	public void addNewTarget(string targetTag) {
 		gos = GameObject.FindGameObjectsWithTag (targetTag);
 		foreach (GameObject go in gos) {
-			if (!q.Contains(go)) {
-				q.Enqueue(go);
+			if (!list.Contains(go)) {
+				list.Add(go);
 			}
 		}
 	}
 	
 	void setCurrentTarget() {
-		if (q.Count != 0) {
-			currentTarget = q.Dequeue ();
+		float minDistance = 100.0f;
+		float currentDistance = 0.0f;
+		int minDistanceIndex = 0;
+
+		for (int i = 0; i < list.Count; i++){
+			currentDistance = Vector3.Distance (list[i].transform.position, this.transform.position);
+			if (currentDistance < minDistance) {
+				minDistance = currentDistance;
+				minDistanceIndex = i;
+			}
+		}
+
+		if (list[minDistanceIndex]) {
+			currentTarget = list[minDistanceIndex];
+			threatDistance = minDistance;
+			threatIndex = minDistanceIndex;
+		} else {
+			currentTarget = null;
 		}
 	}
-	
-	//	IEnumerator WaitToFireAgain() {
-	//		readyToFire = false;
-	//		Debug.Log ("reachable");
-	//		yield return new WaitForSeconds (5);
-	//		readyToFire = true;
-	//	}
 }
