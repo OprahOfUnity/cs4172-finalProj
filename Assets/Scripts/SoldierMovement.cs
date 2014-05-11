@@ -73,6 +73,20 @@ public class SoldierMovement : MonoBehaviour {
 			//	Object.Destroy (other);
 			currentWayPoint = null;
 		}
+
+		if (other.gameObject.name == "arrow") {
+			Debug.Log("hit arrow");
+			this.gameObject.SetActive(false);
+			RenderGUI.renderLose = true;
+		}
+
+		if (other.gameObject.tag == "goal") {
+			Debug.Log("hit goal");
+			this.gameObject.SetActive(false);
+			RenderGUI.renderWin = true;
+		}
+
+
 	}
 	
 	public void setMoveSoldiers (bool val) {

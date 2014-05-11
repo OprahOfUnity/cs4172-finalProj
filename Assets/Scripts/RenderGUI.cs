@@ -16,6 +16,11 @@ public class RenderGUI : MonoBehaviour {
 
 	private bool hasShoot = false;
 
+	// win GUI
+	public static bool renderWin = false;
+	// lose GUI
+	public static bool renderLose = false;
+
 	// Use this for initialization
 	void Start () {
 		toolbar = GameObject.Find ("Toolbar");
@@ -128,6 +133,40 @@ public class RenderGUI : MonoBehaviour {
 				if (GUI.Button (new Rect (20, 280, 280, 120), "Delete", cameraStyle)) {
 					
 				}
+			}
+		}
+
+		// Win
+		if (renderWin) {
+			Debug.Log("rendering win GUI...");
+			
+			GUI.Label(new Rect(Screen.width - 900, Screen.height - 800, 400, 400), "<color=white><size=100>You Win!</size></color>");
+			
+			if(GUI.Button(new Rect (Screen.width - 1100, Screen.height - 500, 280, 120), "<color=white><size=30>Play Again?</size></color>")) {
+				
+				Application.LoadLevel(1);
+			}
+			
+			if(GUI.Button(new Rect (Screen.width - 800, Screen.height - 500, 280, 120), "<color=white><size=30>Quit</size></color>")) {
+				
+				Application.Quit();
+			}
+		}
+		
+		// Game Over
+		if (renderLose) {
+			Debug.Log("rendering win GUI...");
+			
+			GUI.Label(new Rect(Screen.width - 950, Screen.height - 800, 400, 400), "<color=white><size=100>Game Over!</size></color>");
+			
+			if(GUI.Button(new Rect (Screen.width - 1100, Screen.height - 500, 280, 120), "<color=white><size=30>Play Again?</size></color>")) {
+				
+				Application.LoadLevel(1);
+			}
+			//			
+			if(GUI.Button(new Rect (Screen.width - 800, Screen.height - 500, 280, 120), "<color=white><size=30>Quit</size></color>")) {
+				
+				Application.Quit();
 			}
 		}
 	}
