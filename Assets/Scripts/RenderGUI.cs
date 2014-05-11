@@ -6,11 +6,12 @@ public class RenderGUI : MonoBehaviour {
 	private GUIStyle cameraStyle;
 	private GameObject toolbar;
 	private GameObject world;
+	private GameObject wand;
 
 	private VirtualButtonEventHandler virtualButtonHandler;
 	private SelectionHandler wandHandler;
 	private bool hasSpawnedObject = false;
-    private bool hasAttachedObjectToWand = false;
+  private bool hasAttachedObjectToWand = false;
 	private bool hasSoldiers = false;
 
 	private bool hasShoot = false;
@@ -19,6 +20,7 @@ public class RenderGUI : MonoBehaviour {
 	void Start () {
 		world = GameObject.Find ("CylinderTarget");
 		toolbar = GameObject.Find ("Toolbar");
+		wand = GameObject.Find ("Wand");
 		virtualButtonHandler = toolbar.GetComponent <VirtualButtonEventHandler>();
 		wandHandler = this.GetComponent <SelectionHandler> ();
 	}
@@ -26,7 +28,7 @@ public class RenderGUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		hasSpawnedObject = virtualButtonHandler.hasSpawnedObject;
-    	hasAttachedObjectToWand = wandHandler.hasAttachedObject;
+  	hasAttachedObjectToWand = wandHandler.hasAttachedObject;
 		hasSoldiers = this.countWorldSoldiers ();
 
 
@@ -54,7 +56,7 @@ public class RenderGUI : MonoBehaviour {
 		Debug.Log ("Shooting..");
 		CannonShootHandler.toggleShooting = true;
 		Debug.Log ("Waiting..");
-		yield return new WaitForSeconds(0.01f); 
+		yield return new WaitForSeconds(0.01f);
 		Debug.Log ("Stop..");
 		CannonShootHandler.toggleShooting = false;
 	}
@@ -74,7 +76,7 @@ public class RenderGUI : MonoBehaviour {
 				GameObject footsoldiers = GameObject.FindGameObjectWithTag("footsoldiers");
 				footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers ();
 			}
-			
+
 			if (GUI.Button (new Rect (20, 150, 280, 120), "Waypoint Mode", cameraStyle)) {
 				// waypoint toggle bool
 				SetWaypoint.toggleWaypointMode = !SetWaypoint.toggleWaypointMode;
@@ -84,7 +86,7 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSpawnedObject){
 			if (GUI.Button (new Rect (20, 280, 280, 120), "Drop Object", cameraStyle)) {
 				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
-		        virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
+        virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
 			}
 		}
 
@@ -98,14 +100,18 @@ public class RenderGUI : MonoBehaviour {
 		if (wandHandler.selectedObject) {
 			if (wandHandler.selectedObject.tag == "footsoldiers") {
 				if (GUI.Button (new Rect (20, 20, 280, 120), "Attach To Wand", cameraStyle)) {
-
+					wandHandler.selectedObject.transform.parent = wand.transform;
+					wandHandler.selectedObject.transform.localPosition = Vector3.zero;
+					wandHandler.hasAttachedObject = !wandHandler.hasAttachedObject;
 				}
 			}
 			if (wandHandler.selectedObject.tag == "trebuchet") {
 				if (GUI.Button (new Rect (20, 20, 280, 120), "Attach To Wand", cameraStyle)) {
-					
+					wandHandler.selectedObject.transform.parent = wand.transform;
+					wandHandler.selectedObject.transform.localPosition = new Vector3 (0.0f, 0.075f, 0.0f);
+					wandHandler.hasAttachedObject = !wandHandler.hasAttachedObject;
 				}
-				
+
 				if (GUI.Button (new Rect (20, 150, 280, 120), "Shoot", cameraStyle)) {
 					hasShoot = true;
 				}

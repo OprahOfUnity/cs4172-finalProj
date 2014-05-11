@@ -46,10 +46,10 @@ public class SelectionHandler : MonoBehaviour {
 		Debug.Log("Selected Object = " + selectedObject.name);
 	}
 
-    void Deselect () {
-	    Debug.Log("Deselected Object = " + selectedObject.name);
-	    selectedObject = null;
-    }
+  void Deselect () {
+    Debug.Log("Deselected Object = " + selectedObject.name);
+    selectedObject = null;
+  }
 
 	void RemoveSelectedObjectFromWorld () {
 		foreach (Transform child in world.transform) {
