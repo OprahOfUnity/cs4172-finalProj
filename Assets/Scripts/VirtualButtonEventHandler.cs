@@ -73,17 +73,20 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 
 	void AttachObjectToWand(GameObject obj, string type) {
 		obj.transform.parent = wand.transform;
-    	obj.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
-		obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
 		switch (type) {
 	  		case "Trebuchet":
-	        	obj.transform.localRotation = Quaternion.Euler(270, 180, 0);
+					obj.transform.localPosition = new Vector3 (0.0f, 0.075f, 0.0f);
+					obj.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+        	obj.transform.localRotation = Quaternion.Euler(270, 180, 0);
 	  			obj.AddComponent<BoxCollider>();
 	  			break;
 	  		case "Soldier":
-	        	obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+					obj.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
+					obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        	obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 	  			obj.AddComponent<BoxCollider>();
+					obj.AddComponent<Rigidbody>();
 	  			break;
 	  		default:
 	  			Debug.Log ("Undefined Collider Type");
