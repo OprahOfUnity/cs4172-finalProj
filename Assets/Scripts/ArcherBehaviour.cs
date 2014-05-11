@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ArcherBehaviour : MonoBehaviour {
-	
+
+	public GameObject world;
 	private GameObject currentTarget;
 //	public Queue<GameObject> q;
 	public List<GameObject> list;
@@ -12,7 +13,6 @@ public class ArcherBehaviour : MonoBehaviour {
 	// fire arrows
 	public Rigidbody arrow;
 	public Transform archerEnd;
-	private float arrowSpeed = 20.0f;
 
 	private float threatDistance;
 	private int threatIndex;
@@ -48,11 +48,19 @@ public class ArcherBehaviour : MonoBehaviour {
 			arrowInstance.rigidbody.AddForce(arrowInstance.transform.forward * 1000.0f);
 
 			removeDestroyedTarget();
+			removeWaypoints();
 		}
 	}
 
 	private void removeDestroyedTarget () {
 		list.RemoveAt (threatIndex);
+	}
+
+	private void removeWaypoints () {
+		GameObject[] gameObjects =  GameObject.FindGameObjectsWithTag ("waypoint");
+		
+		foreach (GameObject child in gameObjects)
+			Destroy(child);
 	}
 	
 	public void addNewTarget(string targetTag) {
@@ -77,12 +85,9 @@ public class ArcherBehaviour : MonoBehaviour {
 			}
 		}
 
-		if (list[minDistanceIndex]) {
-			currentTarget = list[minDistanceIndex];
-			threatDistance = minDistance;
-			threatIndex = minDistanceIndex;
-		} else {
-			currentTarget = null;
-		}
+		currentTarget = list[minDistanceIndex];
+		threatDistance = minDistance;
+		threatIndex = minDistanceIndex;
+
 	}
 }

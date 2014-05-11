@@ -86,7 +86,6 @@ public class SoldierMovement : MonoBehaviour {
 			RenderGUI.renderWin = true;
 		}
 
-
 	}
 	
 	public void setMoveSoldiers (bool val) {
