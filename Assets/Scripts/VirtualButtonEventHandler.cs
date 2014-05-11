@@ -86,7 +86,6 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 					obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         	obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 	  			obj.AddComponent<BoxCollider>();
-					obj.AddComponent<Rigidbody>();
 	  			break;
 	  		default:
 	  			Debug.Log ("Undefined Collider Type");

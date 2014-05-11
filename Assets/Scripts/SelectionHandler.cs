@@ -16,8 +16,8 @@ public class SelectionHandler : MonoBehaviour {
 
 	void Start () {
 		world = GameObject.Find("CylinderTarget");
-	    wand = GameObject.Find("Wand");
-	    hasAttachedObject = false;
+    wand = GameObject.Find("Wand");
+    hasAttachedObject = false;
 	}
 
 	void Update () {
