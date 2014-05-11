@@ -11,7 +11,7 @@ public class RenderGUI : MonoBehaviour {
 	private VirtualButtonEventHandler virtualButtonHandler;
 	private SelectionHandler wandHandler;
 	private bool hasSpawnedObject = false;
-  private bool hasAttachedObjectToWand = false;
+	private bool hasAttachedObjectToWand = false;
 	private bool hasSoldiers = false;
 
 	private bool hasShoot = false;
@@ -73,7 +73,8 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSoldiers && !wandHandler.selectedObject) {
 			if (GUI.Button (new Rect (20, 20, 280, 120), "Move Soldiers", cameraStyle)) {
 				GameObject footsoldiers = GameObject.FindGameObjectWithTag("footsoldiers");
-				footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers ();
+				Debug.Log ("Move Soldier Pushed..");
+				footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers (true);
 			}
 
 			if (GUI.Button (new Rect (20, 150, 280, 120), "Waypoint Mode", cameraStyle)) {
@@ -85,7 +86,7 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSpawnedObject){
 			if (GUI.Button (new Rect (20, 280, 280, 120), "Drop Object", cameraStyle)) {
 				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
-        virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
+        		virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
 			}
 		}
 
