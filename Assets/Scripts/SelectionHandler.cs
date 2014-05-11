@@ -6,18 +6,16 @@ public class SelectionHandler : MonoBehaviour {
 
 	public Transform selectedObject = null;
 	private GUIStyle cameraStyle;
-	private bool isTranslating = false;
-	private bool isRotating = false;
 
 	private GameObject world;
-	private GameObject wand;
+//	private GameObject wand;
 
 	public bool hasAttachedObject;
 
 	void Start () {
 		world = GameObject.Find("CylinderTarget");
-	    wand = GameObject.Find("Wand");
-	    hasAttachedObject = false;
+//    wand = GameObject.Find("Wand");
+    hasAttachedObject = false;
 	}
 
 	void Update () {

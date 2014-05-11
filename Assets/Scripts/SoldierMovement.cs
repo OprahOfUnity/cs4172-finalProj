@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class SoldierMovement : MonoBehaviour {
 	
-	public static bool moveSoldiers;
-	
+	public bool moveSoldiers;
 	private GameObject currentWayPoint;
 	public Queue<GameObject> q;
 	GameObject[] gos;
@@ -16,11 +15,12 @@ public class SoldierMovement : MonoBehaviour {
 	void Start () {
 		currentWayPoint = null;
 		q = new Queue<GameObject>();
-		
+		moveSoldiers = false;
 		added = false;
 	}
 	
 	public void addNewWayPoint() {
+		Debug.Log ("new waypoint on scene");
 		gos = GameObject.FindGameObjectsWithTag ("waypoint");
 		foreach (GameObject go in gos) {
 			if (!q.Contains(go)) {
@@ -35,13 +35,21 @@ public class SoldierMovement : MonoBehaviour {
 		//		Debug.Log (q.ToString());
 		//		Debug.Log (q.Count);
 		//
-		//		Debug.Log (currentWayPoint);
-		//		Debug.Log (moveSoldiers);
-		
+		Debug.Log ("currentWayPoint != null: " + (currentWayPoint != null) + "\nMove Soldiers: " + moveSoldiers);
+
+		if (!added) {
+			GameObject[] archers = GameObject.FindGameObjectsWithTag ("archers");
+			foreach(GameObject archer in archers) {
+				if (archer) {
+					archer.GetComponent<ArcherBehaviour> ().addNewTarget();
+				}
+			}
+			added = true;
+		}
 		
 		if (currentWayPoint != null && moveSoldiers) {
 			Vector3 wpPos = currentWayPoint.transform.position;
-			//			wpPos.y = 0.125f;//adjusted for realistic soldier movement
+			wpPos.y = 0.125f;//adjusted for realistic soldier movement
 			transform.LookAt (wpPos);
 			transform.position = Vector3.MoveTowards (transform.position, wpPos, 0.1f);
 		} else if (currentWayPoint == null && moveSoldiers) {
@@ -54,6 +62,7 @@ public class SoldierMovement : MonoBehaviour {
 		if (q.Count != 0) {
 			//			Debug.Log ("queue not empty");
 			currentWayPoint = q.Dequeue ();
+			Debug.Log(q.Count);
 		} else {
 			moveSoldiers = false;
 		}
@@ -61,6 +70,11 @@ public class SoldierMovement : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		Debug.Log ("collision!");
+		
+		if (other.gameObject.name == "Goal") {
+			Debug.Log("hit goal");
+			other.gameObject.SetActive(false);
+		}
 		
 		if (other.gameObject.tag == "waypoint") {
 			Debug.Log (other);
@@ -71,8 +85,9 @@ public class SoldierMovement : MonoBehaviour {
 		}
 	}
 	
-	public void setMoveSoldiers () {
+	public void setMoveSoldiers (bool val) {
+		Debug.Log ("About to move soldiers..");
 		// this works only for one at a time.
-		moveSoldiers = !moveSoldiers;
+		moveSoldiers = val;
 	}
 }

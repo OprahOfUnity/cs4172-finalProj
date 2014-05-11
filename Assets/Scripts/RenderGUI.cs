@@ -5,20 +5,19 @@ public class RenderGUI : MonoBehaviour {
 
 	private GUIStyle cameraStyle;
 	private GameObject toolbar;
-	private GameObject world;
+	public GameObject world;
 	private GameObject wand;
 
 	private VirtualButtonEventHandler virtualButtonHandler;
 	private SelectionHandler wandHandler;
 	private bool hasSpawnedObject = false;
-  private bool hasAttachedObjectToWand = false;
+	private bool hasAttachedObjectToWand = false;
 	private bool hasSoldiers = false;
 
 	private bool hasShoot = false;
 
 	// Use this for initialization
 	void Start () {
-		world = GameObject.Find ("CylinderTarget");
 		toolbar = GameObject.Find ("Toolbar");
 		wand = GameObject.Find ("Wand");
 		virtualButtonHandler = toolbar.GetComponent <VirtualButtonEventHandler>();
@@ -74,7 +73,8 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSoldiers && !wandHandler.selectedObject) {
 			if (GUI.Button (new Rect (20, 20, 280, 120), "Move Soldiers", cameraStyle)) {
 				GameObject footsoldiers = GameObject.FindGameObjectWithTag("footsoldiers");
-				footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers ();
+				Debug.Log ("Move Soldier Pushed..");
+				footsoldiers.GetComponent<SoldierMovement> ().setMoveSoldiers (true);
 			}
 
 			if (GUI.Button (new Rect (20, 150, 280, 120), "Waypoint Mode", cameraStyle)) {
@@ -86,29 +86,35 @@ public class RenderGUI : MonoBehaviour {
 		if (hasSpawnedObject){
 			if (GUI.Button (new Rect (20, 280, 280, 120), "Drop Object", cameraStyle)) {
 				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
-        virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
+        		virtualButtonHandler.hasSpawnedObject = !virtualButtonHandler.hasSpawnedObject;
 			}
 		}
 
 		if (hasAttachedObjectToWand) {
 			if (GUI.Button (new Rect (20, 280, 280, 120), "Drop Object", cameraStyle)) {
 				SetSpawnedObject.toggleSetSpawnedObject = !SetSpawnedObject.toggleSetSpawnedObject;
+				if (wandHandler.selectedObject.transform.tag == "footsoldiers") {
+					wandHandler.selectedObject.gameObject.AddComponent<Rigidbody>();
+					wandHandler.gameObject.AddComponent("SoldierMovement");
+				}
 				wandHandler.hasAttachedObject = !wandHandler.hasAttachedObject;
 			}
 		}
 
 		if (wandHandler.selectedObject) {
-			if (wandHandler.selectedObject.tag == "footsoldiers") {
+			if (wandHandler.selectedObject.tag == "footsoldiers" && !hasAttachedObjectToWand) {
 				if (GUI.Button (new Rect (20, 20, 280, 120), "Attach To Wand", cameraStyle)) {
 					wandHandler.selectedObject.transform.parent = wand.transform;
 					wandHandler.selectedObject.transform.localPosition = Vector3.zero;
 					wandHandler.hasAttachedObject = !wandHandler.hasAttachedObject;
+					Destroy(wandHandler.selectedObject.GetComponent<Rigidbody>());
+					Destroy(wandHandler.selectedObject.GetComponent("SoldierMovement"));
 				}
 			}
-			if (wandHandler.selectedObject.tag == "trebuchet") {
+			if (wandHandler.selectedObject.tag == "trebuchet" && !hasAttachedObjectToWand) {
 				if (GUI.Button (new Rect (20, 20, 280, 120), "Attach To Wand", cameraStyle)) {
 					wandHandler.selectedObject.transform.parent = wand.transform;
-					wandHandler.selectedObject.transform.localPosition = new Vector3 (0.0f, 0.075f, 0.0f);
+					wandHandler.selectedObject.transform.localPosition = new Vector3 (0.0f, 0.3f, 0.0f);
 					wandHandler.hasAttachedObject = !wandHandler.hasAttachedObject;
 				}
 

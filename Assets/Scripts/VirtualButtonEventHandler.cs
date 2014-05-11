@@ -7,6 +7,7 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 
 	public GameObject cannon;
 	public GameObject soldier;
+	public BoxCollider soldierCollider;
 
 	public bool hasSpawnedObject;
 
@@ -86,7 +87,8 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 					obj.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         	obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 	  			obj.AddComponent<BoxCollider>();
-					obj.AddComponent<Rigidbody>();
+				obj.GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.8f, 1.0f);
+				obj.GetComponent<BoxCollider>().center = new Vector3(0, 1, 0);
 	  			break;
 	  		default:
 	  			Debug.Log ("Undefined Collider Type");
