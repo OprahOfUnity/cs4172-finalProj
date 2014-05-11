@@ -110,6 +110,9 @@ public class RenderGUI : MonoBehaviour {
 					Destroy(wandHandler.selectedObject.GetComponent<Rigidbody>());
 					Destroy(wandHandler.selectedObject.GetComponent("SoldierMovement"));
 				}
+				if (GUI.Button (new Rect (20, 150, 280, 120), "Delete", cameraStyle)) {
+
+				}
 			}
 			if (wandHandler.selectedObject.tag == "trebuchet" && !hasAttachedObjectToWand) {
 				if (GUI.Button (new Rect (20, 20, 280, 120), "Attach To Wand", cameraStyle)) {
@@ -120,6 +123,10 @@ public class RenderGUI : MonoBehaviour {
 
 				if (GUI.Button (new Rect (20, 150, 280, 120), "Shoot", cameraStyle)) {
 					hasShoot = true;
+				}
+
+				if (GUI.Button (new Rect (20, 280, 280, 120), "Delete", cameraStyle)) {
+					
 				}
 			}
 		}

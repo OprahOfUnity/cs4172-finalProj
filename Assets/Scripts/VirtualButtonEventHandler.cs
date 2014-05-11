@@ -56,18 +56,18 @@ public class VirtualButtonEventHandler : MonoBehaviour, IVirtualButtonEventHandl
 	}
 
 	private void RemoveObjectsFromToolbar() {
-		for (int i = 0; i < toolbar.transform.GetChildCount(); i++)
+		for (int i = 0; i < toolbar.transform.childCount; i++)
 		{
 			Transform child = toolbar.transform.GetChild(i);
-			child.gameObject.active = false;
+			child.gameObject.SetActive (false);
 		}
 	}
 
 	private void RemoveObjectsFromWand() {
-	    for (int i = 0; i < wand.transform.GetChildCount(); i++)
+		for (int i = 0; i < wand.transform.childCount; i++)
 	    {
 	      Transform child = wand.transform.GetChild(i);
-	      child.gameObject.active = false;
+			child.gameObject.SetActive (false);
 	    }
 	}
 

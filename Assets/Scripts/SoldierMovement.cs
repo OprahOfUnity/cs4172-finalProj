@@ -9,16 +9,13 @@ public class SoldierMovement : MonoBehaviour {
 	public Queue<GameObject> q;
 	GameObject[] gos;
 	
-	bool added;
-	
 	// Use this for initialization
 	void Start () {
 		currentWayPoint = null;
 		q = new Queue<GameObject>();
 		moveSoldiers = false;
-		added = false;
 	}
-	
+
 	public void addNewWayPoint() {
 		Debug.Log ("new waypoint on scene");
 		gos = GameObject.FindGameObjectsWithTag ("waypoint");
@@ -36,16 +33,6 @@ public class SoldierMovement : MonoBehaviour {
 		//		Debug.Log (q.Count);
 		//
 		Debug.Log ("currentWayPoint != null: " + (currentWayPoint != null) + "\nMove Soldiers: " + moveSoldiers);
-
-		if (!added) {
-			GameObject[] archers = GameObject.FindGameObjectsWithTag ("archers");
-			foreach(GameObject archer in archers) {
-				if (archer) {
-					archer.GetComponent<ArcherBehaviour> ().addNewTarget();
-				}
-			}
-			added = true;
-		}
 		
 		if (currentWayPoint != null && moveSoldiers) {
 			Vector3 wpPos = currentWayPoint.transform.position;
@@ -56,6 +43,7 @@ public class SoldierMovement : MonoBehaviour {
 			//			Debug.Log ("setcurrentway: " + currentWayPoint);
 			setCurrentWayPoint();
 		}
+		this.gameObject.transform.rotation = Quaternion.Euler(0.0f, this.gameObject.transform.rotation.eulerAngles.y, this.gameObject.transform.rotation.eulerAngles.z); 
 	}
 	
 	void setCurrentWayPoint() {
@@ -65,7 +53,8 @@ public class SoldierMovement : MonoBehaviour {
 			Debug.Log(q.Count);
 		} else {
 			moveSoldiers = false;
-			Debug.Log ("Stopping Soldiers: " + this.gameObject.transform.tag);
+			Debug.Log ("X Rotation: " + this.gameObject.transform.rotation.x);
+//			this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX;
 		}
 	}
 	
@@ -77,7 +66,7 @@ public class SoldierMovement : MonoBehaviour {
 			other.gameObject.SetActive(false);
 		}
 		
-		if (other.gameObject.tag == "waypoint") {
+		if (other.gameObject.tag == "waypoint" && other.gameObject.Equals (currentWayPoint)) {
 			Debug.Log (other);
 			other.gameObject.SetActive(false);
 			//			Destroy (other);
@@ -90,5 +79,15 @@ public class SoldierMovement : MonoBehaviour {
 		Debug.Log ("About to move soldiers..");
 		// this works only for one at a time.
 		moveSoldiers = val;
+	}
+
+	public void notifyArchers() {
+		Debug.Log ("Notifying Archers..");
+		GameObject[] archers = GameObject.FindGameObjectsWithTag ("archers");
+		foreach(GameObject archer in archers) {
+			if (archer) {
+				archer.GetComponent<ArcherBehaviour> ().addNewTarget("footsoldiers");
+			}
+		}
 	}
 }
