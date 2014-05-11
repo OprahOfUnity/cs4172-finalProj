@@ -13,14 +13,12 @@ public class SetSpawnedObject : MonoBehaviour {
 	public static bool toggleSetSpawnedObject = false;
 
 	void Start () {
-		/*world = GameObject.Find("SceneObjects").transform;*/
 		wand = GameObject.Find ("Wand").transform;
 	}
 
 	void LateUpdate(){
 		if (toggleSetSpawnedObject) {
 			this.setObjectToWorld();
-//			this.printWorldObjects();
 			toggleSetSpawnedObject = false;
 		}
 	}
