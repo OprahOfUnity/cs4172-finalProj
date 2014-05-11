@@ -47,7 +47,6 @@ public class SetSpawnedObject : MonoBehaviour {
 			spawnedObject.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			spawnedObject.gameObject.AddComponent<Rigidbody>();
 			spawnedObject.gameObject.AddComponent("SoldierMovement");
-			spawnedObject.rotation = Quaternion.Euler(0.0f, spawnedObject.rotation.eulerAngles.y, spawnedObject.rotation.eulerAngles.z);
 			spawnedObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX;
 			spawnedObject.position = new Vector3 (spawnedObject.position.x, world.position.y, spawnedObject.position.z);
 		}
