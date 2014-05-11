@@ -28,28 +28,31 @@ function Start () {
 }
 //-------------------------------------------------------------------
 function OnCollisionEnter (collision : Collision) {
-	var point=collision.contacts[0].point;
-	var vec = collision.relativeVelocity*UsedMass(collision);
-	FractureAtPoint(point,vec);
-	// added by Josh
-	rigidbody.useGravity = true;
-//	Debug.Log("rigidbody.useGravity: " + rigidbody.useGravity);
-//	while(rigidbody.mass > 10) {
-//		rigidbody.mass -= 10;
-//		Debug.Log("rigidbody.mass: " + rigidbody.mass);
-//		minBreakingForce -= 1000;
-//		Debug.Log("minBreakingForce: " + minBreakingForce);
-//	}
-//	Debug.Log("rigidbody.mass: " + rigidbody.mass);
-	minBreakingForce -= 1000;
-//	Debug.Log("minBreakingForce: " + minBreakingForce);
-	
-	// if hit wall1, point to wall2
-	if (this.name == "Wall1") {
-		ArrowRotate.wall2 = true;
-		// arrow point to Wall2
-		// can't do this in js
-//		ArrowPoint.wall2 = true;
+	Debug.Log ("Collision with wall detected..");
+	if (collision.gameObject.tag == "cannonball") {
+		var point=collision.contacts[0].point;
+		var vec = collision.relativeVelocity*UsedMass(collision);
+		FractureAtPoint(point,vec);
+		// added by Josh
+		rigidbody.useGravity = true;
+	//	Debug.Log("rigidbody.useGravity: " + rigidbody.useGravity);
+	//	while(rigidbody.mass > 10) {
+	//		rigidbody.mass -= 10;
+	//		Debug.Log("rigidbody.mass: " + rigidbody.mass);
+	//		minBreakingForce -= 1000;
+	//		Debug.Log("minBreakingForce: " + minBreakingForce);
+	//	}
+	//	Debug.Log("rigidbody.mass: " + rigidbody.mass);
+		minBreakingForce -= 1000;
+	//	Debug.Log("minBreakingForce: " + minBreakingForce);
+		
+		// if hit wall1, point to wall2
+		if (this.name == "Wall1") {
+			ArrowRotate.wall2 = true;
+			// arrow point to Wall2
+			// can't do this in js
+	//		ArrowPoint.wall2 = true;
+		}
 	}
 }
 //-------------------------------------------------------------------

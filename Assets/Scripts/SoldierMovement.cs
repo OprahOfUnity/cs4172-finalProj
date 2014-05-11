@@ -65,6 +65,7 @@ public class SoldierMovement : MonoBehaviour {
 			Debug.Log(q.Count);
 		} else {
 			moveSoldiers = false;
+			Debug.Log ("Stopping Soldiers: " + this.gameObject.transform.tag);
 		}
 	}
 	
