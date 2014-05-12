@@ -19,13 +19,15 @@ public class DestroyWall : MonoBehaviour {
 	
 	}
 
-	void onCollisionEnter (Collider other) {
+	void OnCollisionEnter (Collision other) {
+		Debug.Log ("Hit..");
 		if (other.gameObject.tag == "cannonball") {
+			Debug.Log ("Ball Collided with Wall..");
 			if(count == 1) {
-				Destroy(other);
 				if (myArcher) {
 					GameObject.Destroy(myArcher); 
 				}
+				GameObject.Destroy(this.gameObject);
 			}
 			count++;
 		}

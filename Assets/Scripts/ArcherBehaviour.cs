@@ -7,7 +7,7 @@ public class ArcherBehaviour : MonoBehaviour {
 	public GameObject world;
 	private GameObject currentTarget;
 //	public Queue<GameObject> q;
-	public List<GameObject> list;
+	public static List<GameObject> targetList;
 	GameObject[] gos;
 	
 	// fire arrows
@@ -20,7 +20,7 @@ public class ArcherBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentTarget = null;
-		list = new List<GameObject> ();
+		targetList = new List<GameObject> ();
 		threatDistance = 0.0f;
 	}
 	
@@ -53,7 +53,7 @@ public class ArcherBehaviour : MonoBehaviour {
 	}
 
 	private void removeDestroyedTarget () {
-		list.RemoveAt (threatIndex);
+		targetList.RemoveAt (threatIndex);
 	}
 
 	private void removeWaypoints () {
@@ -66,8 +66,8 @@ public class ArcherBehaviour : MonoBehaviour {
 	public void addNewTarget(string targetTag) {
 		gos = GameObject.FindGameObjectsWithTag (targetTag);
 		foreach (GameObject go in gos) {
-			if (!list.Contains(go)) {
-				list.Add(go);
+			if (!targetList.Contains(go)) {
+				targetList.Add(go);
 			}
 		}
 	}
@@ -77,15 +77,15 @@ public class ArcherBehaviour : MonoBehaviour {
 		float currentDistance = 0.0f;
 		int minDistanceIndex = 0;
 
-		for (int i = 0; i < list.Count; i++){
-			currentDistance = Vector3.Distance (list[i].transform.position, this.transform.position);
+		for (int i = 0; i < targetList.Count; i++){
+			currentDistance = Vector3.Distance (targetList[i].transform.position, this.transform.position);
 			if (currentDistance < minDistance) {
 				minDistance = currentDistance;
 				minDistanceIndex = i;
 			}
 		}
 
-		currentTarget = list[minDistanceIndex];
+		currentTarget = targetList[minDistanceIndex];
 		threatDistance = minDistance;
 		threatIndex = minDistanceIndex;
 

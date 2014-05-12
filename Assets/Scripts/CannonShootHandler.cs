@@ -31,6 +31,6 @@ public class CannonShootHandler : MonoBehaviour {
 		clone.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
 		Vector3 direction = new Vector3 (0, ballSpeed, 0);
 		clone.rigidbody.velocity = handler.selectedObject.transform.TransformDirection (direction);
-		Physics.IgnoreCollision (clone.transform.collider, handler.selectedObject.transform.collider);
+//		Physics.IgnoreCollision (clone.transform.collider, handler.selectedObject.transform.collider);
 	}
 }
