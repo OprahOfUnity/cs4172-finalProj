@@ -20,7 +20,7 @@ Final Project: Breach
 
 Date of Submission: 5/11/2014
 
-Development Environment:
+Development Environment
 ========================
 
 Unity 4.3.4f1
@@ -33,7 +33,7 @@ LG Nexus 5 running Android version 4.4.2
 
 iPhone 5s running iOS 7.1.1
 
-Unity Scene Info:
+Unity Scene Info
 =================
 Project Title: cs4172-finalProj
 
@@ -41,7 +41,7 @@ Scene 0 Title: MainMenu.unity
 
 Scene 1 Title: MainScene.unity
 
-Directory Overview:
+Directory Overview
 ===================
 
 OprahOfUnity-csw4172-finalProj-written.pdf - written description
@@ -66,33 +66,33 @@ Assets/Qualcomm Augmented Reality/ - AR SDK
 
 Assets/Textures/ - contains all textures used
 
-Special Instructions:
+Special Instructions
 =====================
 
 Make sure that our MainMenu.unity scene is set to scene 0, and our MainScene.unity is set to scene 1.  App should run in landscape mode.
 
-Preparing Targets:
+Preparing Targets
 ==================
 
 Print chips target fit-to-page.  Print gravel toolbar target at its current size (not stretched to fit the page).  Print cylinder soda target fit-to-page and mount to cylinder-shaped object.
 
-Video Demo:
+Video Demo
 ===========
 https://www.youtube.com/watch?v=fpQO8rwmXYs
 
-App Instructions:
+App Instructions
 =================
 Start the app and press “Start” on the main menu to begin the game.
 
-Missing features:
+Missing features
 =================
 Archer may hit solder too soon after being reparented to image target. This may cause an issue where the soldier game object may not be destroyed.  Because we’re using extended tracking, sometimes when we lose track of the cylindrical target the game plane renders in the wrong place, causing issues.
 
-Bugs in Code:
+Bugs in Code
 =============
 Nothing that would halt compilation.
 
-Asset Sources:
+Asset Sources
 ==============
 Cannon:
 
@@ -114,14 +114,14 @@ http://www.pageresource.com/wallpapers/4262/dark-green-grass-texture-and-high-re
 
 Targets: Vuforia Developer Portal
 
-Written Description Sources:
+Written Description Sources
 =============================
 
 We used these written sources to help me look up 3D object manipulation techniques and terminology:
 
--Class slides
+Class slides
 
--D. Bowman, E. Kruijff, J. LaViola Jr., and I. Poupyrev. 3D User Interfaces: Theory and Practice. Addison-Wesley, Boston, 2005, ISBN 0-201-75867-9.
+D. Bowman, E. Kruijff, J. LaViola Jr., and I. Poupyrev. 3D User Interfaces: Theory and Practice. Addison-Wesley, Boston, 2005, ISBN 0-201-75867-9.
 
--Green, Mark; Jacob, Robert (July 1991). "SIGGRAPH '90 Workshop Report: Software Architectures and Metaphors for WIMP User Interfaces". SIGGRAPH '90. SIGGRAPH. Dallas: ACM
+Green, Mark; Jacob, Robert (July 1991). "SIGGRAPH '90 Workshop Report: Software Architectures and Metaphors for Non-WIMP User Interfaces". SIGGRAPH '90. SIGGRAPH. Dallas: ACM
 
