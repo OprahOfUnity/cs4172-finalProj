@@ -8,13 +8,13 @@ Steven Feiner
 Team 1: Oprah of Unity
 ======================
 
-Dan Garzon (dg2796)
+Dan Garzon ([@dgarzon](https://github.com/dgarzon))
 
-Hila Gutfreund (hg2287)
+Hila Gutfreund ([@hilagutfreund](https://github.com/hilagutfreund))
 
-Josh Lieberman (jal2238)
+Josh Lieberman ([@JALsnipe](https://github.com/JALsnipe))
 
-Will McAulliff (wom2102)
+Will McAulliff ([@will-mcauliff-IV](https://github.com/will-mcauliff-IV))
 
 Final Project: Breach
 
