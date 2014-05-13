@@ -6,6 +6,7 @@ COMS W4172: 3D User Interfaces and Augmented Reality
 Steven Feiner 
 
 Team 1: Oprah of Unity
+======================
 
 Dan Garzon (dg2796)
 
@@ -20,6 +21,7 @@ Final Project: Breach
 Date of Submission: 5/11/2014
 
 Development Environment:
+========================
 
 Unity 4.3.4f1
 
@@ -31,6 +33,8 @@ LG Nexus 5 running Android version 4.4.2
 
 iPhone 5s running iOS 7.1.1
 
+Unity Scene Info:
+=================
 Project Title: cs4172-finalProj
 
 Scene 0 Title: MainMenu.unity
