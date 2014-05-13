@@ -117,7 +117,7 @@ Targets: Vuforia Developer Portal
 Written Description Sources
 =============================
 
-We used these written sources to help me look up 3D object manipulation techniques and terminology:
+We used these written sources to help us look up 3D object manipulation techniques and terminology:
 
 Class slides
 
