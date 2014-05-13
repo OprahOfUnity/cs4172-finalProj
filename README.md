@@ -77,15 +77,19 @@ Preparing Targets:
 Print chips target fit-to-page.  Print gravel toolbar target at its current size (not stretched to fit the page).  Print cylinder soda target fit-to-page and mount to cylinder-shaped object.
 
 Video Demo:
+===========
 https://www.youtube.com/watch?v=fpQO8rwmXYs
 
 App Instructions:
+=================
 Start the app and press “Start” on the main menu to begin the game.
 
 Missing features:
+=================
 Archer may hit solder too soon after being reparented to image target. This may cause an issue where the soldier game object may not be destroyed.  Because we’re using extended tracking, sometimes when we lose track of the cylindrical target the game plane renders in the wrong place, causing issues.
 
 Bugs in Code:
+=============
 Nothing that would halt compilation.
 
 Asset Sources:
